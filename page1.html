@@ -1,1 +1,38 @@
-page1
+MySQL Master Slave Config
+
+master:
+
+vi /etc/my.cnf
+[mysqld]
+log-bin=mysql-bin
+server-id=1
+
+service mysql restart
+
+mysql> CREATE USER 'repl'@'%' IDENTIFIED BY 'password';
+mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+mysql> FLUSH TABLES WITH READ LOCK;
+mysql > SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
++------------------+----------+--------------+------------------+
+| mysql-bin.000003 | 73       | test         | manual,mysql     |
++------------------+----------+--------------+------------------+
+mysql> UNLOCK TABLES;
+
+
+slave:
+vi /etc/my.cnf
+[mysqld]
+server-id=2
+
+service mysql restart
+
+mysql> CHANGE MASTER TO
+    ->     MASTER_HOST='master_host_name',
+    ->     MASTER_USER='replication_user_name',
+    ->     MASTER_PASSWORD='replication_password',
+    ->     MASTER_LOG_FILE='recorded_log_file_name',
+    ->     MASTER_LOG_POS=recorded_log_position;
+mysql> start slave;
+mysql> show slave status\G
