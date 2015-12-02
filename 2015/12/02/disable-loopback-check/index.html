@@ -3,36 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Python xlwt | Defaultzlq</title>
+  <title>Defaultzlq</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="xlwt模块导入xlwt模块import xlwt
-新建Excel中sheetw = xlwt.Workbook()
-ws = w.add_sheet(sheetname, cell_overwrite_ok=True)
-cell_overwrite_ok=True设置Excel内容可覆写
-设置格式style = xlwt.XFStyle()
-font = xlwt.Font()
-font.nam">
+  <meta name="description" content="Disable the loopback check (less-recommended method)
+The second method is to disable the loopback check by setting the DisableLoopbackCheck registry key.
+To set the DisableLoopbackCheck registry key,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python xlwt">
-<meta property="og:url" content="http://yoursite.com/2015/10/13/Python-xlwt/index.html">
+<meta property="og:title" content="Defaultzlq">
+<meta property="og:url" content="http://yoursite.com/2015/12/02/disable-loopback-check/index.html">
 <meta property="og:site_name" content="Defaultzlq">
-<meta property="og:description" content="xlwt模块导入xlwt模块import xlwt
-新建Excel中sheetw = xlwt.Workbook()
-ws = w.add_sheet(sheetname, cell_overwrite_ok=True)
-cell_overwrite_ok=True设置Excel内容可覆写
-设置格式style = xlwt.XFStyle()
-font = xlwt.Font()
-font.nam">
-<meta property="og:updated_time" content="2015-10-13T01:20:21.900Z">
+<meta property="og:description" content="Disable the loopback check (less-recommended method)
+The second method is to disable the loopback check by setting the DisableLoopbackCheck registry key.
+To set the DisableLoopbackCheck registry key,">
+<meta property="og:updated_time" content="2015-12-02T08:52:38.684Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python xlwt">
-<meta name="twitter:description" content="xlwt模块导入xlwt模块import xlwt
-新建Excel中sheetw = xlwt.Workbook()
-ws = w.add_sheet(sheetname, cell_overwrite_ok=True)
-cell_overwrite_ok=True设置Excel内容可覆写
-设置格式style = xlwt.XFStyle()
-font = xlwt.Font()
-font.nam">
+<meta name="twitter:title" content="Defaultzlq">
+<meta name="twitter:description" content="Disable the loopback check (less-recommended method)
+The second method is to disable the loopback check by setting the DisableLoopbackCheck registry key.
+To set the DisableLoopbackCheck registry key,">
   
     <link rel="alternative" href="/atom.xml" title="Defaultzlq" type="application/atom+xml">
   
@@ -78,43 +66,26 @@ font.nam">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Python-xlwt" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-disable-loopback-check" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/10/13/Python-xlwt/" class="article-date">
-  <time datetime="2015-10-13T01:20:21.900Z" itemprop="datePublished">2015-10-13</time>
+    <a href="/2015/12/02/disable-loopback-check/" class="article-date">
+  <time datetime="2015-12-02T08:52:38.684Z" itemprop="datePublished">2015-12-02</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Python xlwt
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="xlwt模块">xlwt模块</h3><h6 id="导入xlwt模块">导入xlwt模块</h6><p>import xlwt</p>
-<h6 id="新建Excel中sheet">新建Excel中sheet</h6><pre><code>w = xlwt.<span class="function"><span class="title">Workbook</span><span class="params">()</span></span>
-ws = w.<span class="function"><span class="title">add_sheet</span><span class="params">(sheetname, cell_overwrite_ok=True)</span></span>
-</code></pre><p><code>cell_overwrite_ok=True</code>设置Excel内容可覆写</p>
-<h6 id="设置格式">设置格式</h6><pre><code>style = xlwt.<span class="function"><span class="title">XFStyle</span><span class="params">()</span></span>
-<span class="attribute">font</span> = xlwt.<span class="function"><span class="title">Font</span><span class="params">()</span></span>
-<span class="attribute">font</span><span class="class">.name</span> = u<span class="string">'新細明體'</span>
-style<span class="class">.font</span> = <span class="attribute">font</span>
-</code></pre><h6 id="在Excel对应位置写入内容">在Excel对应位置写入内容</h6><p><code>ws.write(col, row, u&#39;\u25cf&#39;, style)</code>  </p>
-<h6 id="保存Excel">保存Excel</h6><p><code>w.save(filepath)</code>  </p>
+        <p>Disable the loopback check (less-recommended method)</p>
+<p>The second method is to disable the loopback check by setting the DisableLoopbackCheck registry key.</p>
+<p>To set the DisableLoopbackCheck registry key, follow these steps:<br>Set the<br>DisableStrictNameChecking<br>registry entry to 1. For more information about how to do this, click the following article number to view the article in the Microsoft Knowledge Base:<br>281308 Connecting to SMB share on a Windows 2000-based computer or a Windows Server 2003-based computer may not work with an alias name<br>Click Start, click Run, type regedit, and then click OK.<br>In Registry Editor, locate and then click the following registry key:<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa<br>Right-click Lsa, point to New, and then click DWORD Value.<br>Type DisableLoopbackCheck, and then press ENTER.<br>Right-click DisableLoopbackCheck, and then click Modify.<br>In the Value data box, type 1, and then click OK.<br>Quit Registry Editor, and then restart your computer.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/13/Python-xlwt/" data-id="ciforqr080001h4la9ee8o3e6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/02/disable-loopback-check/" data-id="cihokxm510006nslawpl1gyzl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -123,19 +94,10 @@ style<span class="class">.font</span> = <span class="attribute">font</span>
     
 <nav id="article-nav">
   
-    <a href="/2015/10/16/disabling-windows-firewall-on-hyper-v-server-2012-r2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Disabling Windows Firewall on Hyper-V Server 2012 R2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/10/13/Python-os/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/12/02/cannot-crawl/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Python os</div>
+      <div class="article-nav-title"></div>
     </a>
   
 </nav>

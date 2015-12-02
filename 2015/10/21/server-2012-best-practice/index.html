@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Defaultzlq</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RDP Printer Mapping should be disabled on hosts, to remove any chance of a printer driver causing instability issues on the host machine.Preferred method: Use Group Policy with host servers in their o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Defaultzlq">
+<meta property="og:url" content="http://yoursite.com/2015/10/21/server-2012-best-practice/index.html">
+<meta property="og:site_name" content="Defaultzlq">
+<meta property="og:description" content="RDP Printer Mapping should be disabled on hosts, to remove any chance of a printer driver causing instability issues on the host machine.Preferred method: Use Group Policy with host servers in their o">
+<meta property="og:updated_time" content="2015-10-21T08:02:11.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Defaultzlq">
+<meta name="twitter:description" content="RDP Printer Mapping should be disabled on hosts, to remove any chance of a printer driver causing instability issues on the host machine.Preferred method: Use Group Policy with host servers in their o">
+  
+    <link rel="alternative" href="/atom.xml" title="Defaultzlq" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Defaultzlq</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-server-2012-best-practice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/21/server-2012-best-practice/" class="article-date">
+  <time datetime="2015-10-21T08:02:11.908Z" itemprop="datePublished">2015-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="RDP_Printer_Mapping_should_be_disabled_on_hosts,_to_remove_any_chance_of_a_printer_driver_causing_instability_issues_on_the_host_machine-">RDP Printer Mapping should be disabled on hosts, to remove any chance of a printer driver causing instability issues on the host machine.</h4><p>Preferred method: Use Group Policy with host servers in their own separate OU<br>Computer Configuration –&gt; Policies –&gt; Administrative Templates –&gt; Windows Components –&gt; Remote Desktop<br>Services –&gt; Remote Desktop Session Host –&gt; Printer Redirection –&gt; Do not allow client printer redirection –&gt; Set to “Enabled  </p>
+<h4 id="Default_path_for_Virtual_Hard_Disks_﴾VHD/VHDX﴿_should_be_set_to_a_non‐system_drive,_due_to_this_can_cause_disk_latency_as_well_as_create_the_potential_for_the_host_running_out_of_disk_space-">Default path for Virtual Hard Disks ﴾VHD/VHDX﴿ should be set to a non‐system drive, due to this can cause disk latency as well as create the potential for the host running out of disk space.</h4><h4 id="If_you_choose_to_save_the_VM_state_as_the_Automatic_Stop_Action,_the_default_virtual_machine_path_should_be_set_to_a_non‐system_drive,_due_to_the_creation_of_a_-bin_file_is_created_that_matches_the_size_of_memory_reserved_for_the_virtual_machine-A_-vsv_file_may_also_be_created_in_the_same_location_as_the_-bin_file,_adding_to_disk_space_used_for_each_VM-_﴾The_default_path_is:_C:\ProgramData\Microsoft\Windows\Hyper‐V-﴿">If you choose to save the VM state as the Automatic Stop Action, the default virtual machine path should be set to a non‐system drive, due to the creation of a .bin file is created that matches the size of memory reserved for the virtual machine.A .vsv file may also be created in the same location as the .bin file, adding to disk space used for each VM. ﴾The default path is: C:\ProgramData\Microsoft\Windows\Hyper‐V.﴿</h4><p>Note: Hyper‐V in Server 2012 will now only use the .bin if you choose to save the VM state as the Automatic<br>Stop Action.<br>Change to .bin usage in Server 2012: <a href="http://blogs.msdn.com/b/virtual_pc_guy/archive/2012/03/26/option‐to‐" target="_blank" rel="external">http://blogs.msdn.com/b/virtual_pc_guy/archive/2012/03/26/option‐to‐</a><br>remove‐bin‐files‐with‐hyper‐v‐in‐windows‐8.aspx</p>
+<h4 id="Periodically_run_performance_counters_against_the_host,_to_ensure_optimal_performance-">Periodically run performance counters against the host, to ensure optimal performance.</h4><p>Recommend using the Hyper‐V performance counter that can be extracted from the ﴾free﴿ Codeplex PAL application:<br><a href="http://pal.codeplex.com/" target="_blank" rel="external">http://pal.codeplex.com/</a><br>Install PAL on a workstation and open it, then click on the Threshold File tab.<br>Select “Microsoft Windows Server 2012 Hyper‐V” from the Threshold file title, then choose Export to Perfmon template<br>file. Save the XML file to a location accessible to the Hyper‐V host.<br>Next, on the host, open Server Manager –&gt; Tool –&gt; Performance Monitor<br>In Performance Monitor, click on Data Collector Sets –&gt; User Defined. Right click on User Defined and choose New –&gt; Data Collector Set. Name the collector set “Hyper‐V Performance Counter Set” and select Create from a template<br>(Recommended) then choose Next. On the next screen, select Browse and then locate the XML file you exported from<br>the PAL application. Once done, this will show up in your User Defined Data Collector Sets.<br>Run these counters in Performance Monitor for 30 minutes to 1 hour ﴾during high usage times﴿ and look for disk<br>latency, memory and CPU issues, etc.</p>
+<h4 id="When_creating_virtual_switches,_it_is_best_practice_to_uncheck_Allow_management_operating_system_to_share_this_network_adapter,_in_order_to_create_a_dedicated_network_for_your_VM﴾s﴿_to_communicate_with_other_computers_on_the_physical_network-_﴾If_the_management_adapter_is_shared,_do_not_modify_protocols_on_the_NIC-﴿">When creating virtual switches, it is best practice to uncheck Allow management operating system to share this network adapter, in order to create a dedicated network for your VM﴾s﴿ to communicate with other computers on the physical network. ﴾If the management adapter is shared, do not modify protocols on the NIC.﴿</h4><p>Please note: we fully support and even recommend (in some cases) using the virtual switch to separate networks for Management,<br>Live Migration, CSV/Heartbeat and even iSCSI. For example two 10GB NIC’s that are split out using VLANs and QoS</p>
+<h4 id="The_recommended_minimum_free_space_on_CSV_volumes_containing_Hyper‐V_virtual_machine_VHD_and/or_VHDX_files:">The recommended minimum free space on CSV volumes containing Hyper‐V virtual machine VHD and/or VHDX files:</h4><p>15% free space, if the partition size is less than 1TB<br>10% free space, if the partition size is between 1TB and 5TB<br>5% free space, if the partition size is greater than 5TB<br>To enumerate current volume information, including the percentage free, you can use the following PowerShell command:<br>Get‐ClusterSharedVolume “Cluster Disk 1” | fc *<br>Review the “PercentageFree” output</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/21/server-2012-best-practice/" data-id="cihokxm4s0003nslalc9g3awy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/21/hp-ilo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/02/disable-loopback-check/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/02/cannot-crawl/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/01/sharepoint2007/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/21/user-management/">User Management</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Defaultzlq<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

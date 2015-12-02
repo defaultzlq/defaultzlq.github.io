@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Defaultzlq</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: SharePoint 2007Microsoft Office SharePoint Server 2007服务器场的初始配置包括下面的内容：
+创建服务账户  
+启动Microsoft Office SharePoint Server 2007上的服务  
+创建Web应用程序  
+创建“我的站点”应用程序  
+创建共享服务提供程序（SSP）  
+
+“服务器场搜索账户”–Office">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Defaultzlq">
+<meta property="og:url" content="http://yoursite.com/2015/12/01/sharepoint2007/index.html">
+<meta property="og:site_name" content="Defaultzlq">
+<meta property="og:description" content="title: SharePoint 2007Microsoft Office SharePoint Server 2007服务器场的初始配置包括下面的内容：
+创建服务账户  
+启动Microsoft Office SharePoint Server 2007上的服务  
+创建Web应用程序  
+创建“我的站点”应用程序  
+创建共享服务提供程序（SSP）  
+
+“服务器场搜索账户”–Office">
+<meta property="og:updated_time" content="2015-12-01T09:16:56.952Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Defaultzlq">
+<meta name="twitter:description" content="title: SharePoint 2007Microsoft Office SharePoint Server 2007服务器场的初始配置包括下面的内容：
+创建服务账户  
+启动Microsoft Office SharePoint Server 2007上的服务  
+创建Web应用程序  
+创建“我的站点”应用程序  
+创建共享服务提供程序（SSP）  
+
+“服务器场搜索账户”–Office">
+  
+    <link rel="alternative" href="/atom.xml" title="Defaultzlq" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Defaultzlq</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sharepoint2007" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/01/sharepoint2007/" class="article-date">
+  <time datetime="2015-12-01T09:16:56.952Z" itemprop="datePublished">2015-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="title:_SharePoint_2007">title: SharePoint 2007</h2><h5 id="Microsoft_Office_SharePoint_Server_2007服务器场的初始配置包括下面的内容：">Microsoft Office SharePoint Server 2007服务器场的初始配置包括下面的内容：</h5><ul>
+<li>创建服务账户  </li>
+<li>启动Microsoft Office SharePoint Server 2007上的服务  </li>
+<li>创建Web应用程序  </li>
+<li>创建“我的站点”应用程序  </li>
+<li>创建共享服务提供程序（SSP）  </li>
+</ul>
+<p>“服务器场搜索账户”–Office SharePoint Server搜索服务<br>“搜索服务器账户”、“内容访问账户”–Windows SharePoint Services搜索服务<br>“SSP服务凭据”和“Web应用程序池账户”</p>
+<p>使用SSP可以在服务器场中共享Office SharePoint Server 2007服务<br>创建SSP之前，您必须为SSP管理网站创建Web应用程序。需要创建两个Web应用程序池  </p>
+<h2 id="Office_SharePoint_Server_搜尋服務設定">Office SharePoint Server 搜尋服務設定</h2><h3 id="伺服器陣列搜尋服務帳戶">伺服器陣列搜尋服務帳戶</h3><p>將使用此帳戶執行搜尋服務。設定或變更此帳戶，會影響伺服器陣列的所有索引及查詢伺服器。</p>
+<p>基於安全起見，伺服器陣列搜尋服務帳戶不可以是內建帳戶，這樣才能存取資料庫及內容索引。內建帳戶的範例為本機服務及網路服務。  </p>
+<h2 id="Windows_SharePoint_Services_搜尋服務設定">Windows SharePoint Services 搜尋服務設定</h2><h3 id="服務帳戶">服務帳戶</h3><p>將使用此帳戶執行搜尋服務。</p>
+<p>搜尋服務帳戶不可以是內建帳戶，這樣才能存取資料庫。內建帳戶的範例為本機服務及網路服務。 </p>
+<h3 id="內容存取帳戶">內容存取帳戶</h3><p>搜尋服務將會使用此帳戶存取所有內容。</p>
+<p>帳戶將會新增至「完整讀取」原則，將所有內容的唯讀存取權給與該帳戶。</p>
+<p>若需適當的搜尋功能及資訊安全性，請勿使用可以修改內容的管理員帳戶。 </p>
+<p>One of my customers happened to ask me if we have some set of service accounts to be created (minimal) for sharepoint deployment. Following are some of them:<br>Following are the accounts that would be required:</p>
+<p>SPECIAL PERMISSION ACCOUNT:<br>(1) Setup User Account  – Used for running install and to admin server (Basically this account with do things like: Installation, Service Pack Installs, Server Maintenance, Farm Configurations, etc). Also note that this domain account has to be a LOCAL ADMIN on each every box in our Sharepoint Farm.Apart from that this account will also need DBCREATOR and SECURITYADMIN Roles on the database server.</p>
+<p>GENERAL ACCOUNTS:<br>(2) Server Farm Account  – Central Admin App Pool Account, Timer Service Account. This account will be used during the installation when the installation would prompt for User Account.<br>(3) SSP App Pool Account : This is just a domain user and SharePoint would give all the required permissions to it.<br>(3) SSP Service Account – All SSP services and jobs. This could be the same account as the SSP APP POOL account.<br>(4) MOSS Search Account – Used by search service.  Also become default content access account for search. This account should only have the read access to all the web-application as it needs to crawl it.<br>(5) WSS Search Service Account– Used by the help system crawler. We will configure this service only once a day as this is really not need for anything.<br>(5) WSS Search Content Account– Used to access the data by the help system crawler. Again this can be the same account as the WSS Search Service Account.<br>(6) Application Pool Identities– The account used to access the content databases for the web app.  Also account for w3wp.exe.</p>
+<p>So we created only above 6 service accounts which are all just domain users and only the (1) account is the local admin on all Sharepoint box and with some special Database roles assigned.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/01/sharepoint2007/" data-id="cihokxm2l0002nslaei8geljx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/02/cannot-crawl/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/21/user-management/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">User Management</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/02/disable-loopback-check/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/02/cannot-crawl/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/01/sharepoint2007/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/21/user-management/">User Management</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Defaultzlq<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
