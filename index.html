@@ -61,6 +61,200 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-powershell-get-remote-users" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/22/powershell-get-remote-users/" class="article-date">
+  <time datetime="2016-01-22T07:05:35.919Z" itemprop="datePublished">2016-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="title:_get_local_remote_users">title: get local remote users</h2><pre><code>[void][System.Reflection.Assembly]::LoadWithPartialName(<span class="string">"System.Drawing"</span>)
+[void][System.Reflection.Assembly]::LoadWithPartialName(<span class="string">"System.Windows.Forms"</span>)
+
+<span class="variable">$objForm</span> = New-Object System.Windows.Forms.Form
+<span class="variable">$objForm</span>.Text = <span class="string">"Data Entry Form"</span>
+<span class="variable">$objForm</span>.Size = New-Object System.Drawing.Size(<span class="number">210</span>, <span class="number">260</span>)
+<span class="variable">$objForm</span>.StartPosition = <span class="string">"CenterScreen"</span>
+
+<span class="variable">$OKButton</span> = New-Object System.Windows.Forms.Button
+<span class="variable">$OKButton</span>.Location = New-Object System.Drawing.Size(<span class="number">10</span>, <span class="number">80</span>)
+<span class="variable">$OKButton</span>.Size = New-Object System.Drawing.Size(<span class="number">180</span>, <span class="number">30</span>)
+<span class="variable">$OKButton</span>.Text = <span class="string">"查看遠程桌面權限"</span>
+<span class="variable">$OKButton</span>.Add_Click({
+    <span class="variable">$objTextBox2</span>.Text = <span class="string">""</span>
+    <span class="variable">$Computer</span> = <span class="variable">$objTextBox1</span>.Text
+    if (!(Test-Connection <span class="variable">$Computer</span> -Count <span class="number">2</span> -Quiet))
+    {
+        <span class="variable">$objTextBox2</span>.Text = <span class="string">"$Computer 無法連接"</span>
+    }
+    else
+    {
+        <span class="variable">$adcomputer</span> = [ADSI](<span class="string">"WinNT://"</span> + <span class="variable">$Computer</span> + <span class="string">"/Remote Desktop Users,group"</span>)
+        <span class="variable">$members</span> = <span class="variable">$adcomputer</span>.psbase.Invoke(<span class="string">"Members"</span>) | foreach{ ([ADSI]$<span class="number">_</span>).InvokeGet(<span class="string">"Name"</span>) }
+        if (<span class="variable">$members</span> -eq <span class="variable">$null</span>)
+        {
+            <span class="variable">$objTextBox2</span>.Text = <span class="string">"$Computer 無遠程桌面權限"</span>
+        }
+        else
+        {
+            <span class="variable">$objTextBox2</span>.Text = <span class="string">""</span>
+            <span class="variable">$nl</span> = [System.Environment]::NewLine
+            foreach (<span class="variable">$user</span> in <span class="variable">$members</span>)
+            {
+                <span class="variable">$objTextBox2</span>.AppendText(<span class="variable">$user</span> + <span class="variable">$nl</span>)
+            }
+        }
+    }
+})
+<span class="variable">$objForm</span>.Controls.Add(<span class="variable">$OKButton</span>)
+
+
+<span class="variable">$objLabel</span> = New-Object System.Windows.Forms.Label
+<span class="variable">$objLabel</span>.Location = New-Object System.Drawing.Size(<span class="number">10</span>, <span class="number">20</span>)
+<span class="variable">$objLabel</span>.Size = New-Object System.Drawing.Size(<span class="number">180</span>, <span class="number">20</span>)
+<span class="variable">$objLabel</span>.Text = <span class="string">"請在下方輸入一個電腦名稱："</span>
+<span class="variable">$objForm</span>.Controls.Add(<span class="variable">$objLabel</span>)
+
+<span class="variable">$objTextBox1</span> = New-Object System.Windows.Forms.TextBox
+<span class="variable">$objTextBox1</span>.Location = New-Object System.Drawing.Size(<span class="number">10</span>, <span class="number">40</span>)
+<span class="variable">$objTextBox1</span>.Size = New-Object System.Drawing.Size(<span class="number">180</span>, <span class="number">20</span>)
+<span class="variable">$objForm</span>.Controls.Add(<span class="variable">$objTextBox1</span>)
+
+<span class="variable">$objTextBox2</span> = New-Object System.Windows.Forms.TextBox
+<span class="variable">$objTextBox2</span>.Location = New-Object System.Drawing.Size(<span class="number">10</span>, <span class="number">120</span>)
+<span class="variable">$objTextBox2</span>.Size = New-Object System.Drawing.Size(<span class="number">180</span>, <span class="number">90</span>)
+<span class="variable">$objTextBox2</span>.ScrollBars = <span class="string">'Vertical'</span>
+<span class="variable">$objTextBox2</span>.Multiline = <span class="variable">$true</span>
+<span class="variable">$objForm</span>.Controls.Add(<span class="variable">$objTextBox2</span>)
+
+<span class="variable">$objForm</span>.Topmost = <span class="variable">$True</span>
+
+<span class="variable">$objForm</span>.Add_Shown({ <span class="variable">$objForm</span>.Activate() })
+[void]<span class="variable">$objForm</span>.ShowDialog()
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/22/powershell-get-remote-users/" data-id="cijpel5e80005gklac5uvlvqy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-localgpo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/09/localgpo/" class="article-date">
+  <time datetime="2015-12-09T08:05:09.977Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>LocalGPO.msi - Excellent MS Tool<br>Microsoft_Security_Compliance_Manager_Setup.exe – The Microsoft Security Compliance Manager allows you to view, update, and export security baselines.LocalGPO.msi – This tool is designed to manage local group policies of a computer such as applying a security baseline and exporti<br>Microsoft_Security_Compliance_Manager_Setup.exe –</p>
+<p>The Microsoft Security Compliance Manager allows you to view, update, and export security baselines.</p>
+<p>LocalGPO.msi – This tool is designed to manage local group policies of a computer such as applying a security baseline and exporting the local Group Policy.</p>
+<p>You can use a Microsoft tool called local GPO that I really like as it can do the below activities:</p>
+<ol>
+<li>It can backup your local GPO to a GPMC formatted backup. Which means you could backup a local GPO and then use GPMC to import it into a domain-based GPO.</li>
+</ol>
+<ol>
+<li>It can take a GPMC backup of GP settings and import them into a local GPO on a machine.</li>
+</ol>
+<ol>
+<li>It can restore a local GPO to its default state.</li>
+</ol>
+<p>Let’s take a look at how to use each function of this tool,</p>
+<p>For backing up the local GPO, the syntax is simple:<br>From command-line here.cmd (open this cmd from the Local GPO folder), and simply type:<br>cscript LocalGPO.wsf /path:c:\gpbackups /export<br>Where c:\gpbackups is a path to where I want to store my backup and /export tells the script to export my local GPO settings.<br>Now if we want to import a GPMC backup or exported GP object from another stand-alone server into my local GPO, the syntax is even easier. you simply have to  provide the path to the GUID-Named folder that GPMC creates under the backup directory when you back up a GPO, like this:<br>cscript LocalGPO.wsf /path:C:\gpbackups{42ADD8FE-EDF6-479B-92C6-557343D8D091}<br>And, to restore a local GPO to its default config:<br>cscript LocalGPO.wsf /restore</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/09/localgpo/" data-id="cijpel5en0009gkla3zviip3s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-microsoft-assessment-planning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/09/microsoft-assessment-planning/" class="article-date">
+  <time datetime="2015-12-09T07:59:53.301Z" itemprop="datePublished">2015-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MAP<br>Microsoft Assessment and Planning (MAP) Toolkit<br>The Microsoft Assessment and Planning (MAP) Toolkit is an agentless inventory, assessment, and reporting tool that can securely assess IT environments for various platform migrations  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/09/microsoft-assessment-planning/" data-id="cijpel5en0008gklay2hz6mv6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-sharepoint-access" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/03/sharepoint-access/" class="article-date">
+  <time datetime="2015-12-03T08:49:13.832Z" itemprop="datePublished">2015-12-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/03/sharepoint-access/">文件馆访问权限设定</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>文件馆访问的最低权限级别包括以下权限项目：<br>网站权限：检视页面、开启<br>清单权限：检视项目、检视应用程式页面  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/12/03/sharepoint-access/" data-id="cijpel5e80003gkla4sz3cfut" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-disable-loopback-check" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/02/disable-loopback-check/" class="article-date">
@@ -80,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/02/disable-loopback-check/" data-id="cihokxm510006nslawpl1gyzl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/02/disable-loopback-check/" data-id="cijpel5f3000egklacj2odns7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -125,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/02/cannot-crawl/" data-id="cihokxm550007nsla8dtuy6o8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/02/cannot-crawl/" data-id="cijpel5f3000fgklaogs1hsst" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/01/sharepoint2007/" data-id="cihokxm2l0002nslaei8geljx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/01/sharepoint2007/" data-id="cijpel5ds0002gkla6h7unq60" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/21/user-management/" data-id="cihokxm1q0001nslamznzipyu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/21/user-management/" data-id="cijpel5ab0001gklazyzdsbrk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -276,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/" data-id="cihokxm160000nsla4rbybyzd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/" data-id="cijpel58l0000gklaui1xc5lc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -307,161 +501,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/21/server-2012-best-practice/" data-id="cihokxm4s0003nslalc9g3awy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hp-ilo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/21/hp-ilo/" class="article-date">
-  <time datetime="2015-10-21T01:00:16.365Z" itemprop="datePublished">2015-10-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HP</p>
-<p>G6 G7 iLO3<br>G8 G9 iLO4</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/21/hp-ilo/" data-id="cihokxm4z0005nslavbhaig3d" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-wsus-admin-console" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/20/install-wsus-admin-console/" class="article-date">
-  <time datetime="2015-10-20T03:32:08.568Z" itemprop="datePublished">2015-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/20/install-wsus-admin-console/">Install WSUS Admin Console</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Install_the_WSUS_3-0_SP2_Administration_Console">Install the WSUS 3.0 SP2 Administration Console</h5><p>On the Installation Mode Selection page, select the Administration Console only check box</p>
-<p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=5216" target="_blank" rel="external">Windows Server Update Services 3.0 SP2</a></p>
-<p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=6576" target="_blank" rel="external">Microsoft Report Viewer 2008 Redistributable</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/20/install-wsus-admin-console/" data-id="cihokxm4w0004nslafo9z6mru" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-disabling-windows-firewall-on-hyper-v-server-2012-r2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/16/disabling-windows-firewall-on-hyper-v-server-2012-r2/" class="article-date">
-  <time datetime="2015-10-16T02:16:12.199Z" itemprop="datePublished">2015-10-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/16/disabling-windows-firewall-on-hyper-v-server-2012-r2/">Disabling Windows Firewall on Hyper-V Server 2012 R2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Process will run on Windows Power Shell  </p>
-<pre><code>powershell  
-netsh advfirewall <span class="built_in">set</span> allprofiles <span class="keyword">state</span> off
-
-Restart-Computer
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/16/disabling-windows-firewall-on-hyper-v-server-2012-r2/" data-id="cift0w3c10000kcla7z4ym3nd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python-xlwt" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/13/Python-xlwt/" class="article-date">
-  <time datetime="2015-10-13T01:20:21.900Z" itemprop="datePublished">2015-10-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/13/Python-xlwt/">Python xlwt</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="xlwt模块">xlwt模块</h3><h6 id="导入xlwt模块">导入xlwt模块</h6><p>import xlwt</p>
-<h6 id="新建Excel中sheet">新建Excel中sheet</h6><pre><code>w = xlwt.<span class="function"><span class="title">Workbook</span><span class="params">()</span></span>
-ws = w.<span class="function"><span class="title">add_sheet</span><span class="params">(sheetname, cell_overwrite_ok=True)</span></span>
-</code></pre><p><code>cell_overwrite_ok=True</code>设置Excel内容可覆写</p>
-<h6 id="设置格式">设置格式</h6><pre><code>style = xlwt.<span class="function"><span class="title">XFStyle</span><span class="params">()</span></span>
-<span class="attribute">font</span> = xlwt.<span class="function"><span class="title">Font</span><span class="params">()</span></span>
-<span class="attribute">font</span><span class="class">.name</span> = u<span class="string">'新細明體'</span>
-style<span class="class">.font</span> = <span class="attribute">font</span>
-</code></pre><h6 id="在Excel对应位置写入内容">在Excel对应位置写入内容</h6><p><code>ws.write(col, row, u&#39;\u25cf&#39;, style)</code>  </p>
-<h6 id="保存Excel">保存Excel</h6><p><code>w.save(filepath)</code>  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/13/Python-xlwt/" data-id="ciforqr080001h4la9ee8o3e6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/21/server-2012-best-practice/" data-id="cijpel5e80004gklal62hypb0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -490,7 +530,7 @@ style<span class="class">.font</span> = <span class="attribute">font</span>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -502,23 +542,23 @@ style<span class="class">.font</span> = <span class="attribute">font</span>
       <ul>
         
           <li>
+            <a href="/2016/01/22/powershell-get-remote-users/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/09/localgpo/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/09/microsoft-assessment-planning/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/03/sharepoint-access/">文件馆访问权限设定</a>
+          </li>
+        
+          <li>
             <a href="/2015/12/02/disable-loopback-check/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/02/cannot-crawl/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/01/sharepoint2007/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/21/user-management/">User Management</a>
-          </li>
-        
-          <li>
-            <a href="/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/">(no title)</a>
           </li>
         
       </ul>
@@ -533,7 +573,7 @@ style<span class="class">.font</span> = <span class="attribute">font</span>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Defaultzlq<br>
+      &copy; 2016 Defaultzlq<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
