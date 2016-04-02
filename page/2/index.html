@@ -61,6 +61,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-How-to-create-Hyper-V-VM-template-without-VMM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/" class="article-date">
+  <time datetime="2015-11-12T00:55:03.528Z" itemprop="datePublished">2015-11-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>How to create a Hyper-V VM template without VMM</p>
+<p>quickly deploy new VM’s from, without having to install and patch them each time.</p>
+<ol>
+<li><p>First, create a VM, install the operating system and patch it.</p>
+</li>
+<li><p>On your template VM browse to C:WindowsSystem32Sysprep folder, and run Sysprep. Select the option to Generalize, and select Shutdown from the drop down menu.</p>
+</li>
+<li><p>In the Hyper-V Manager export the VM, right click your template VM and select Export.</p>
+</li>
+</ol>
+<p>leave the original virtual machine template in Hyper-V Manager, as every few months after more patches have been released you will want to update it and create a new template.</p>
+<p> how to deploy a new virtual machine from the template. It’s not just a case of selecting Import in the Hyper-V Manager, because the exported virtual machine and it’s disks still exist and when you import a VM you don’t have the option to rename them.</p>
+<ol>
+<li><p>Create new VM without the disks, select New then choose Virtual Machine, configure the machine, selecting the same generation as the template you created, but CPU, memory and networking settings can be different. When you get to the Connect Virtual Hard Disk option, select Attach a virtual hard disk later, click Next and Finish.</p>
+</li>
+<li><p>Browse to your template VM folder (D:\Templates\Win 2012 R2 G2\Virtual Hard Disks) and copy the VHDX file locally.</p>
+</li>
+<li><p>Rename the copied VHDX to be the same as the virtual machine you have just created</p>
+</li>
+<li><p>Cut and paste the disk into the default location on your Hyper-V server for your VHDX files. </p>
+</li>
+<li><p>In Hyper-V Manager, right click the new VM you have deployed and select Settings, then select the SCSI Controller option (for Generation 1 virtual machines, select the IDE Controller 0). Highlight Hard Drive and click Add.</p>
+</li>
+<li><p>Browse to D:\Hyper-V\Virtual Hard Disks and select the VHDX file you cut and pasted earlier in step 4. Click Apply.</p>
+</li>
+<li><p>Now go to the Firmware option, select the hard drive you have just added and click Move Up, so it is the first boot entry. Click Apply. Click OK.</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/" data-id="cimiumjlh0000q4la27m4celu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-server-2012-best-practice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/21/server-2012-best-practice/" class="article-date">
+  <time datetime="2015-10-21T08:02:11.908Z" itemprop="datePublished">2015-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="RDP_Printer_Mapping_should_be_disabled_on_hosts,_to_remove_any_chance_of_a_printer_driver_causing_instability_issues_on_the_host_machine-">RDP Printer Mapping should be disabled on hosts, to remove any chance of a printer driver causing instability issues on the host machine.</h4><p>Preferred method: Use Group Policy with host servers in their own separate OU<br>Computer Configuration –&gt; Policies –&gt; Administrative Templates –&gt; Windows Components –&gt; Remote Desktop<br>Services –&gt; Remote Desktop Session Host –&gt; Printer Redirection –&gt; Do not allow client printer redirection –&gt; Set to “Enabled  </p>
+<h4 id="Default_path_for_Virtual_Hard_Disks_﴾VHD/VHDX﴿_should_be_set_to_a_non‐system_drive,_due_to_this_can_cause_disk_latency_as_well_as_create_the_potential_for_the_host_running_out_of_disk_space-">Default path for Virtual Hard Disks ﴾VHD/VHDX﴿ should be set to a non‐system drive, due to this can cause disk latency as well as create the potential for the host running out of disk space.</h4><h4 id="If_you_choose_to_save_the_VM_state_as_the_Automatic_Stop_Action,_the_default_virtual_machine_path_should_be_set_to_a_non‐system_drive,_due_to_the_creation_of_a_-bin_file_is_created_that_matches_the_size_of_memory_reserved_for_the_virtual_machine-A_-vsv_file_may_also_be_created_in_the_same_location_as_the_-bin_file,_adding_to_disk_space_used_for_each_VM-_﴾The_default_path_is:_C:\ProgramData\Microsoft\Windows\Hyper‐V-﴿">If you choose to save the VM state as the Automatic Stop Action, the default virtual machine path should be set to a non‐system drive, due to the creation of a .bin file is created that matches the size of memory reserved for the virtual machine.A .vsv file may also be created in the same location as the .bin file, adding to disk space used for each VM. ﴾The default path is: C:\ProgramData\Microsoft\Windows\Hyper‐V.﴿</h4><p>Note: Hyper‐V in Server 2012 will now only use the .bin if you choose to save the VM state as the Automatic<br>Stop Action.<br>Change to .bin usage in Server 2012: <a href="http://blogs.msdn.com/b/virtual_pc_guy/archive/2012/03/26/option‐to‐" target="_blank" rel="external">http://blogs.msdn.com/b/virtual_pc_guy/archive/2012/03/26/option‐to‐</a><br>remove‐bin‐files‐with‐hyper‐v‐in‐windows‐8.aspx</p>
+<h4 id="Periodically_run_performance_counters_against_the_host,_to_ensure_optimal_performance-">Periodically run performance counters against the host, to ensure optimal performance.</h4><p>Recommend using the Hyper‐V performance counter that can be extracted from the ﴾free﴿ Codeplex PAL application:<br><a href="http://pal.codeplex.com/" target="_blank" rel="external">http://pal.codeplex.com/</a><br>Install PAL on a workstation and open it, then click on the Threshold File tab.<br>Select “Microsoft Windows Server 2012 Hyper‐V” from the Threshold file title, then choose Export to Perfmon template<br>file. Save the XML file to a location accessible to the Hyper‐V host.<br>Next, on the host, open Server Manager –&gt; Tool –&gt; Performance Monitor<br>In Performance Monitor, click on Data Collector Sets –&gt; User Defined. Right click on User Defined and choose New –&gt; Data Collector Set. Name the collector set “Hyper‐V Performance Counter Set” and select Create from a template<br>(Recommended) then choose Next. On the next screen, select Browse and then locate the XML file you exported from<br>the PAL application. Once done, this will show up in your User Defined Data Collector Sets.<br>Run these counters in Performance Monitor for 30 minutes to 1 hour ﴾during high usage times﴿ and look for disk<br>latency, memory and CPU issues, etc.</p>
+<h4 id="When_creating_virtual_switches,_it_is_best_practice_to_uncheck_Allow_management_operating_system_to_share_this_network_adapter,_in_order_to_create_a_dedicated_network_for_your_VM﴾s﴿_to_communicate_with_other_computers_on_the_physical_network-_﴾If_the_management_adapter_is_shared,_do_not_modify_protocols_on_the_NIC-﴿">When creating virtual switches, it is best practice to uncheck Allow management operating system to share this network adapter, in order to create a dedicated network for your VM﴾s﴿ to communicate with other computers on the physical network. ﴾If the management adapter is shared, do not modify protocols on the NIC.﴿</h4><p>Please note: we fully support and even recommend (in some cases) using the virtual switch to separate networks for Management,<br>Live Migration, CSV/Heartbeat and even iSCSI. For example two 10GB NIC’s that are split out using VLANs and QoS</p>
+<h4 id="The_recommended_minimum_free_space_on_CSV_volumes_containing_Hyper‐V_virtual_machine_VHD_and/or_VHDX_files:">The recommended minimum free space on CSV volumes containing Hyper‐V virtual machine VHD and/or VHDX files:</h4><p>15% free space, if the partition size is less than 1TB<br>10% free space, if the partition size is between 1TB and 5TB<br>5% free space, if the partition size is greater than 5TB<br>To enumerate current volume information, including the percentage free, you can use the following PowerShell command:<br>Get‐ClusterSharedVolume “Cluster Disk 1” | fc *<br>Review the “PercentageFree” output</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/21/server-2012-best-practice/" data-id="cimiumjpx0004q4laerkdag82" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hp-ilo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/10/21/hp-ilo/" class="article-date">
@@ -79,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/21/hp-ilo/" data-id="cijpel5en000bgklafe56356o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/21/hp-ilo/" data-id="cimiumjql000cq4lazfxmvsd4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -118,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/20/install-wsus-admin-console/" data-id="cijpel5en000agkla5hwb87yk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/20/install-wsus-admin-console/" data-id="cimiumjqi000bq4labc86gg8b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -159,7 +244,7 @@ Restart-Computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/16/disabling-windows-firewall-on-hyper-v-server-2012-r2/" data-id="cijpel5f3000dgkla4b3xxxuk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/16/disabling-windows-firewall-on-hyper-v-server-2012-r2/" data-id="cimiumjqw000fq4lah10xfjlg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -205,7 +290,7 @@ style<span class="class">.font</span> = <span class="attribute">font</span>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/13/Python-xlwt/" data-id="cijpel5fi000ggklarpgmpkin" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/13/Python-xlwt/" data-id="cimiumjr9000iq4lagr4bmv7n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -250,7 +335,7 @@ style<span class="class">.font</span> = <span class="attribute">font</span>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/13/Python-os/" data-id="cijpel5fi000hgklab5gi1s6w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/13/Python-os/" data-id="cimiumjrc000jq4lanligltyv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -294,7 +379,7 @@ style<span class="class">.font</span> = <span class="attribute">font</span>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/11/my-list/" data-id="cijpel5en0007gkla70uzsdxe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/11/my-list/" data-id="cimiumjq40007q4lac1olixmi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -364,7 +449,7 @@ mysql&gt; show slave status\G
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/09/mysql-replication/" data-id="cijpel5e80006gkla28txkds5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/09/mysql-replication/" data-id="cimiumjq20006q4la71i6ugmu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -409,7 +494,7 @@ mysql&gt; show slave status\G
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/09/hello-world/" data-id="cijpel5f3000cgklalts5r90r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/09/hello-world/" data-id="cimiumjqo000dq4laojdpo8ev" class="article-share-link">Share</a>
       
       
     </footer>
@@ -438,7 +523,7 @@ mysql&gt; show slave status\G
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -450,6 +535,14 @@ mysql&gt; show slave status\G
       <ul>
         
           <li>
+            <a href="/2016/04/02/mva/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/18/doclib-approval/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2016/01/22/powershell-get-remote-users/">(no title)</a>
           </li>
         
@@ -459,14 +552,6 @@ mysql&gt; show slave status\G
         
           <li>
             <a href="/2015/12/09/microsoft-assessment-planning/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/03/sharepoint-access/">文件馆访问权限设定</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/02/disable-loopback-check/">(no title)</a>
           </li>
         
       </ul>
