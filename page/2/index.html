@@ -61,6 +61,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-user-management" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/21/user-management/" class="article-date">
+  <time datetime="2015-11-21T11:49:39.009Z" itemprop="datePublished">2015-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/21/user-management/">User Management</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>Control userpasswords2</li>
+<li>gpedit.msc-→计算机配置-→WINDOWS设置-→安全设置-→本地策略-→安全选项-→网络访问: 不允许存储网络身份验证的凭据或 .NET Passports</li>
+<li>gpedit.msc-→计算机配置-→Windows设置-→安全设置-→本地策略-→安全选项-→交互式登录：可被缓冲的前次登陆个数（在域控制器不可用的情况下）-→缓存10次登录<br>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\Current Version\Winlogon\<br>ValueName: CachedLogonsCount<br>Data Type: REG_SZ<br>Values: 0 - 50</li>
+<li>用户在本地登录到域时，DC验证用户身份通过后，会替用户建立一个访问令牌（Access Token），其中包含着该用户的SID及用户所属所有组的SID</li>
+<li>以管理员身份登录到本机，右击我的电脑–属性–高级–用户配置文件（设置）–选中刚才的测试用户配置文件–单击“复制到”，保存到一个特定的位置，并把该文件夹取名为default user</li>
+<li>SID:三段数字是域的ID号，后面的ID是用户的</li>
+<li>ID号是由一个叫RID操作主机的服务器来负责分发的</li>
+<li>域环境下，在DC上注册acctinfo.dll动态链接库，为用户增加有关SID等信息的属性。注册命令：regsvr32 acctinfo.dll (该dll文件在Windows Resource Kit Tools内存在</li>
+<li>客户端应用组策略：<br>计算机启动：刷新周期，应用计算机配置、运行启动脚本。<br>用户登录：刷新周期，应用用户设置，运行登录脚本。</li>
+<li>GPO=GPC+GPT </li>
+<li>组策略的应用顺序：Local—&gt;site—&gt;domain—&gt;OU—&gt;子OU</li>
+<li>GPO只能链接到容器上（即LSDOU），只能对容器里面的计算机或用户生效，而对组无效</li>
+<li>组策略的生效时间： a. 计算机策略设置：计算机启动、手动刷新（gpupdate /force)、90-120分钟后台周期刷新。 b. 用户策略设置：用户登录、手动刷新（gpupdate /force)、90-120分钟后台刷新。c. DC的策略设置：5分钟后台周期刷新。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/11/21/user-management/" data-id="cimiumjp80001q4layl5ors27" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-How-to-create-Hyper-V-VM-template-without-VMM" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/12/How-to-create-Hyper-V-VM-template-without-VMM/" class="article-date">
@@ -459,54 +510,9 @@ mysql&gt; show slave status\G
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/09/hello-world/" class="article-date">
-  <time datetime="2015-10-09T11:34:26.801Z" itemprop="datePublished">2015-10-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/09/hello-world/" data-id="cimiumjqo000dq4laojdpo8ev" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -523,7 +529,7 @@ mysql&gt; show slave status\G
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -535,23 +541,23 @@ mysql&gt; show slave status\G
       <ul>
         
           <li>
-            <a href="/2016/04/26/sharepoint-access/">文件馆访问权限设定</a>
+            <a href="/2016/07/05/microsoft-assessment-planning/">MAP</a>
           </li>
         
           <li>
-            <a href="/2016/04/02/mva/">(no title)</a>
+            <a href="/2016/07/05/localgpo/">GPO Tool</a>
           </li>
         
           <li>
-            <a href="/2016/02/18/doclib-approval/">(no title)</a>
+            <a href="/2016/07/05/doclib-approval/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/01/22/powershell-get-remote-users/">(no title)</a>
+            <a href="/2016/07/05/mvacc/">MVA CC</a>
           </li>
         
           <li>
-            <a href="/2015/12/09/localgpo/">(no title)</a>
+            <a href="/2016/07/05/goodbook1/">Good book</a>
           </li>
         
       </ul>

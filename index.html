@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-sharepoint-access" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-microsoft-assessment-planning" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/04/26/sharepoint-access/" class="article-date">
-  <time datetime="2016-04-26T09:41:34.324Z" itemprop="datePublished">2016-04-26</time>
+    <a href="/2016/07/05/microsoft-assessment-planning/" class="article-date">
+  <time datetime="2016-07-05T01:04:47.601Z" itemprop="datePublished">2016-07-05</time>
 </a>
     
   </div>
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/26/sharepoint-access/">文件馆访问权限设定</a>
+      <a class="article-title" href="/2016/07/05/microsoft-assessment-planning/">MAP</a>
     </h1>
   
 
@@ -83,15 +83,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>sharepoint 2007<br>文件馆访问的最低权限级别包括以下权限项目：<br>网站权限：检视页面、开启<br>清单权限：检视项目、检视应用程式页面  </p>
-<p>sharepoint 2013<br>文件馆访问的最低权限级别包括以下权限项目：<br>网站权限：检视页面、开启<br>清单权限：检视项目、開啟項目、检视应用程式页面</p>
-<p>sharepoint 2013<br>文件馆新增、編輯、刪除权限级别在以上基礎下包括以下权限项目：<br>网站权限：使用用戶端整合功能<br>清单权限：新增項目、編輯項目、刪除項目</p>
-<p>sharepoint 2013<br>install on server 2012 r2<br>prerequisiteinstaller配置IIS等功能始終報錯，忽略直接安裝即可<br>安裝WindowsServerAppFabricSetup_x64時失敗，需修改系統環境變量PSModulePath中的引號</p>
+        <p>Microsoft Assessment and Planning (MAP) Toolkit<br>The Microsoft Assessment and Planning (MAP) Toolkit is an agentless inventory, assessment, and reporting tool that can securely assess IT environments for various platform migrations  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/26/sharepoint-access/" data-id="cimiumjpu0003q4la0ffmmng0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/microsoft-assessment-planning/" data-id="cimiumjq90009q4lal9swzazn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -101,24 +98,48 @@
 
 
   
-    <article id="post-mva" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-localgpo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/04/02/mva/" class="article-date">
-  <time datetime="2016-04-02T07:58:08.213Z" itemprop="datePublished">2016-04-02</time>
+    <a href="/2016/07/05/localgpo/" class="article-date">
+  <time datetime="2016-07-05T01:04:04.398Z" itemprop="datePublished">2016-07-05</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/localgpo/">GPO Tool</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[xml]$xml1 =Get-Content C:\new.xml -Encoding UTF8<br>$nl = [Environment]::NewLine<br>$xml1.tt.body.div.p | foreach {$<em>.id -replace “subtitle”,””;$</em>.begin+” –&gt; “+$<em>.end;$</em>.’#text’;$nl} | Out-File c:\cc.srt</p>
+        <p>LocalGPO.msi - Excellent MS Tool  </p>
+<p>Microsoft_Security_Compliance_Manager_Setup.exe – The Microsoft Security Compliance Manager allows you to view, update, and export security baselines.</p>
+<p>LocalGPO.msi – This tool is designed to manage local group policies of a computer such as applying a security baseline and exporting the local Group Policy.</p>
+<p>Local GPO can do the below activities:</p>
+<ol>
+<li>It can backup your local GPO to a GPMC formatted backup. Which means you could backup a local GPO and then use GPMC to import it into a domain-based GPO.</li>
+</ol>
+<ol>
+<li>It can take a GPMC backup of GP settings and import them into a local GPO on a machine.</li>
+</ol>
+<ol>
+<li>It can restore a local GPO to its default state.</li>
+</ol>
+<p>How to use each function of this tool:</p>
+<p>For backing up the local GPO, the syntax is simple:<br>From command-line here.cmd (open this cmd from the Local GPO folder), and simply type:<br>    cscript LocalGPO.wsf /path:c:\gpbackups /export<br>Where c:\gpbackups is a path to where I want to store my backup and /export tells the script to export my local GPO settings.<br>Now if we want to import a GPMC backup or exported GP object from another stand-alone server into my local GPO, the syntax is even easier. you simply have to  provide the path to the GUID-Named folder that GPMC creates under the backup directory when you back up a GPO, like this:<br>    cscript LocalGPO.wsf /path:C:\gpbackups{42ADD8FE-EDF6-479B-92C6-557343D8D091}<br>And, to restore a local GPO to its default config:<br>    cscript LocalGPO.wsf /restore</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/02/mva/" data-id="cimiumjq60008q4laset7f18d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/localgpo/" data-id="cimiumjqe000aq4la52kcv5fp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,8 +151,8 @@
   
     <article id="post-doclib-approval" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/02/18/doclib-approval/" class="article-date">
-  <time datetime="2016-02-18T08:25:40.194Z" itemprop="datePublished">2016-02-18</time>
+    <a href="/2016/07/05/doclib-approval/" class="article-date">
+  <time datetime="2016-07-05T00:57:32.909Z" itemprop="datePublished">2016-07-05</time>
 </a>
     
   </div>
@@ -140,8 +161,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title:文件庫內容核准<br>-</p>
-<p>適用於Sharepoint2007  </p>
+        <h2 id="title:文件庫內容核准">title:文件庫內容核准</h2><p>適用於Sharepoint2007  </p>
 <p>###1、啟用文件庫的內容核准</p>
 <ol>
 <li>點擊文件庫，在【<strong>設定</strong>】功能表上，點擊【<strong>文件庫設定值</strong>】  </li>
@@ -164,7 +184,84 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/02/18/doclib-approval/" data-id="cimiumjqr000eq4la7brdenad" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/doclib-approval/" data-id="cimiumjqr000eq4la7brdenad" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mvacc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/05/mvacc/" class="article-date">
+  <time datetime="2016-07-05T00:57:09.148Z" itemprop="datePublished">2016-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/mvacc/">MVA CC</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Powershell:  </p>
+<pre><code>[xml]<span class="variable">$xml1</span> =Get-Content C:\new.xml -Encoding UTF8  
+<span class="variable">$nl</span> = [Environment]::NewLine  
+<span class="variable">$xml1</span>.tt.body.div.p | foreach {$<span class="number">_</span>.id -replace <span class="string">"subtitle"</span>,<span class="string">""</span>;$<span class="number">_</span>.begin+<span class="string">" --&gt; "</span>+$<span class="number">_</span>.end;$<span class="number">_</span>.<span class="string">'#text'</span>;<span class="variable">$nl</span>} | Out-File c:\cc.srt
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/05/mvacc/" data-id="ciq8r8obo0001iglaa6bpe19t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-goodbook1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/05/goodbook1/" class="article-date">
+  <time datetime="2016-07-05T00:56:51.131Z" itemprop="datePublished">2016-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/goodbook1/">Good book</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>深入淺出 MFC<br>第１章 Win32 基本程式觀念</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/05/goodbook1/" data-id="ciq8r8o6z0000igla2ealijhy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -176,17 +273,27 @@
   
     <article id="post-powershell-get-remote-users" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/01/22/powershell-get-remote-users/" class="article-date">
-  <time datetime="2016-01-22T07:05:35.919Z" itemprop="datePublished">2016-01-22</time>
+    <a href="/2016/07/05/powershell-get-remote-users/" class="article-date">
+  <time datetime="2016-07-05T00:54:20.217Z" itemprop="datePublished">2016-07-05</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/05/powershell-get-remote-users/">get local remote users</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="title:_get_local_remote_users">title: get local remote users</h2><pre><code>[void][System.Reflection.Assembly]::LoadWithPartialName(<span class="string">"System.Drawing"</span>)
+        <pre><code>[void][System.Reflection.Assembly]::LoadWithPartialName(<span class="string">"System.Drawing"</span>)
 [void][System.Reflection.Assembly]::LoadWithPartialName(<span class="string">"System.Windows.Forms"</span>)
 
 <span class="variable">$objForm</span> = New-Object System.Windows.Forms.Form
@@ -253,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/22/powershell-get-remote-users/" data-id="cimiumjpz0005q4lax30qhlza" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/05/powershell-get-remote-users/" data-id="cimiumjpz0005q4lax30qhlza" class="article-share-link">Share</a>
       
       
     </footer>
@@ -263,65 +370,37 @@
 
 
   
-    <article id="post-localgpo" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-sharepoint-access" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/12/09/localgpo/" class="article-date">
-  <time datetime="2015-12-09T08:05:09.977Z" itemprop="datePublished">2015-12-09</time>
+    <a href="/2016/04/26/sharepoint-access/" class="article-date">
+  <time datetime="2016-04-26T09:41:34.324Z" itemprop="datePublished">2016-04-26</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/sharepoint-access/">文件馆访问权限设定</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>LocalGPO.msi - Excellent MS Tool<br>Microsoft_Security_Compliance_Manager_Setup.exe – The Microsoft Security Compliance Manager allows you to view, update, and export security baselines.LocalGPO.msi – This tool is designed to manage local group policies of a computer such as applying a security baseline and exporti<br>Microsoft_Security_Compliance_Manager_Setup.exe –</p>
-<p>The Microsoft Security Compliance Manager allows you to view, update, and export security baselines.</p>
-<p>LocalGPO.msi – This tool is designed to manage local group policies of a computer such as applying a security baseline and exporting the local Group Policy.</p>
-<p>You can use a Microsoft tool called local GPO that I really like as it can do the below activities:</p>
-<ol>
-<li>It can backup your local GPO to a GPMC formatted backup. Which means you could backup a local GPO and then use GPMC to import it into a domain-based GPO.</li>
-</ol>
-<ol>
-<li>It can take a GPMC backup of GP settings and import them into a local GPO on a machine.</li>
-</ol>
-<ol>
-<li>It can restore a local GPO to its default state.</li>
-</ol>
-<p>Let’s take a look at how to use each function of this tool,</p>
-<p>For backing up the local GPO, the syntax is simple:<br>From command-line here.cmd (open this cmd from the Local GPO folder), and simply type:<br>cscript LocalGPO.wsf /path:c:\gpbackups /export<br>Where c:\gpbackups is a path to where I want to store my backup and /export tells the script to export my local GPO settings.<br>Now if we want to import a GPMC backup or exported GP object from another stand-alone server into my local GPO, the syntax is even easier. you simply have to  provide the path to the GUID-Named folder that GPMC creates under the backup directory when you back up a GPO, like this:<br>cscript LocalGPO.wsf /path:C:\gpbackups{42ADD8FE-EDF6-479B-92C6-557343D8D091}<br>And, to restore a local GPO to its default config:<br>cscript LocalGPO.wsf /restore</p>
+        <p>sharepoint 2007<br>文件馆访问的最低权限级别包括以下权限项目：<br>网站权限：检视页面、开启<br>清单权限：检视项目、检视应用程式页面  </p>
+<p>sharepoint 2013<br>文件馆访问的最低权限级别包括以下权限项目：<br>网站权限：检视页面、开启<br>清单权限：检视项目、開啟項目、检视应用程式页面</p>
+<p>sharepoint 2013<br>文件馆新增、編輯、刪除权限级别在以上基礎下包括以下权限项目：<br>网站权限：使用用戶端整合功能<br>清单权限：新增項目、編輯項目、刪除項目</p>
+<p>sharepoint 2013<br>install on server 2012 r2<br>prerequisiteinstaller配置IIS等功能始終報錯，忽略直接安裝即可<br>安裝WindowsServerAppFabricSetup_x64時失敗，需修改系統環境變量PSModulePath中的引號</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/09/localgpo/" data-id="cimiumjqe000aq4la52kcv5fp" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-microsoft-assessment-planning" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/09/microsoft-assessment-planning/" class="article-date">
-  <time datetime="2015-12-09T07:59:53.301Z" itemprop="datePublished">2015-12-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>MAP<br>Microsoft Assessment and Planning (MAP) Toolkit<br>The Microsoft Assessment and Planning (MAP) Toolkit is an agentless inventory, assessment, and reporting tool that can securely assess IT environments for various platform migrations  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/09/microsoft-assessment-planning/" data-id="cimiumjq90009q4lal9swzazn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/04/26/sharepoint-access/" data-id="cimiumjpu0003q4la0ffmmng0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -451,60 +530,9 @@
 
 
   
-    <article id="post-user-management" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/21/user-management/" class="article-date">
-  <time datetime="2015-11-21T11:49:39.009Z" itemprop="datePublished">2015-11-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/21/user-management/">User Management</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>Control userpasswords2</li>
-<li>gpedit.msc-→计算机配置-→WINDOWS设置-→安全设置-→本地策略-→安全选项-→网络访问: 不允许存储网络身份验证的凭据或 .NET Passports</li>
-<li>gpedit.msc-→计算机配置-→Windows设置-→安全设置-→本地策略-→安全选项-→交互式登录：可被缓冲的前次登陆个数（在域控制器不可用的情况下）-→缓存10次登录<br>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\Current Version\Winlogon\<br>ValueName: CachedLogonsCount<br>Data Type: REG_SZ<br>Values: 0 - 50</li>
-<li>用户在本地登录到域时，DC验证用户身份通过后，会替用户建立一个访问令牌（Access Token），其中包含着该用户的SID及用户所属所有组的SID</li>
-<li>以管理员身份登录到本机，右击我的电脑–属性–高级–用户配置文件（设置）–选中刚才的测试用户配置文件–单击“复制到”，保存到一个特定的位置，并把该文件夹取名为default user</li>
-<li>SID:三段数字是域的ID号，后面的ID是用户的</li>
-<li>ID号是由一个叫RID操作主机的服务器来负责分发的</li>
-<li>域环境下，在DC上注册acctinfo.dll动态链接库，为用户增加有关SID等信息的属性。注册命令：regsvr32 acctinfo.dll (该dll文件在Windows Resource Kit Tools内存在</li>
-<li>客户端应用组策略：<br>计算机启动：刷新周期，应用计算机配置、运行启动脚本。<br>用户登录：刷新周期，应用用户设置，运行登录脚本。</li>
-<li>GPO=GPC+GPT </li>
-<li>组策略的应用顺序：Local—&gt;site—&gt;domain—&gt;OU—&gt;子OU</li>
-<li>GPO只能链接到容器上（即LSDOU），只能对容器里面的计算机或用户生效，而对组无效</li>
-<li>组策略的生效时间： a. 计算机策略设置：计算机启动、手动刷新（gpupdate /force)、90-120分钟后台周期刷新。 b. 用户策略设置：用户登录、手动刷新（gpupdate /force)、90-120分钟后台刷新。c. DC的策略设置：5分钟后台周期刷新。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/11/21/user-management/" data-id="cimiumjp80001q4layl5ors27" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -521,7 +549,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -533,23 +561,23 @@
       <ul>
         
           <li>
-            <a href="/2016/04/26/sharepoint-access/">文件馆访问权限设定</a>
+            <a href="/2016/07/05/microsoft-assessment-planning/">MAP</a>
           </li>
         
           <li>
-            <a href="/2016/04/02/mva/">(no title)</a>
+            <a href="/2016/07/05/localgpo/">GPO Tool</a>
           </li>
         
           <li>
-            <a href="/2016/02/18/doclib-approval/">(no title)</a>
+            <a href="/2016/07/05/doclib-approval/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2016/01/22/powershell-get-remote-users/">(no title)</a>
+            <a href="/2016/07/05/mvacc/">MVA CC</a>
           </li>
         
           <li>
-            <a href="/2015/12/09/localgpo/">(no title)</a>
+            <a href="/2016/07/05/goodbook1/">Good book</a>
           </li>
         
       </ul>
